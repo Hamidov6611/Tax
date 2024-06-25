@@ -43,19 +43,19 @@ model Excavation {
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   address           String
-  organizationName  String //Tashkilot nomi
-  viloyatName       String //Viloyat nomi
-  tumanAndRiverName String //Tuman va daryo nomi
-  areaName          String //Maydon nomi
+  organizationName  String
+  viloyatName       String
+  tumanAndRiverName String
+  areaName          String
   date              String
-  dsiCode           String //DSI kodi
-  ns10              Int //Viloyat kodi
-  ns11              Int //Tuman kodi
-  tin               Int //INN
-  count             Float //Qazib olingan shag'al
+  dsiCode           String
+  ns10              Int
+  ns11              Int
+  tin               Int
+  count             Float
   createdBy         User     @relation(fields: [createdById], references: [id])
   createdById       String
-  status            Status   @default(NOT_SENT) //Soliq tizimiga yuborilgani haqida status
-  excelFileName     String //Excel fayl nomi
-  taxSystemError    String? //Soliq tizimiga yuborilgani haqida xatolik
+  status            Status   @default(NOT_SENT)
+  excelFileName     String
+  taxSystemError    String?
 }
