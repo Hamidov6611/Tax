@@ -1,4 +1,4 @@
-export const API_PREFIX = 'api/v1';
+export const API_PREFIX = process.env.API_PREFIX;
 
 export const DEFAULT_PASSWORD = process.env.DEFAULT_PASSWORD;
 export const JWT_SECRET = process.env.JWT_SECRET;
