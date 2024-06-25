@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Permission {
+  EXCAVATION_READ
+  EXCAVATION_WRITE
+  USER_READ
+  USER_WRITE
+}
+
+enum Status {
+  NOT_SENT
+  SUCCESS
+  ERROR
+}
+
+model User {
+  id           String       @id @default(uuid())
+  createdAt    DateTime     @default(now()) @db.Timestamptz()
+  updatedAt    DateTime     @updatedAt @db.Timestamptz()
+  phoneNumber  String       @unique
+  password     String
+  firstName    String
+  lastName     String
+  permissions  Permission[]
+  isSuperAdmin Boolean      @default(false)
+  deletedAt    DateTime?    @db.Timestamptz()
+  refreshToken String?
+  Excavation   Excavation[]
+}
+
+model Excavation {
+  id                Int      @id
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  address           String
+  organizationName  String //Tashkilot nomi
+  viloyatName       String //Viloyat nomi
+  tumanAndRiverName String //Tuman va daryo nomi
+  areaName          String //Maydon nomi
+  date              String
+  dsiCode           String //DSI kodi
+  ns10              Int //Viloyat kodi
+  ns11              Int //Tuman kodi
+  tin               Int //INN
+  count             Float //Qazib olingan shag'al
+  createdBy         User     @relation(fields: [createdById], references: [id])
+  createdById       String
+  status            Status   @default(NOT_SENT) //Soliq tizimiga yuborilgani haqida status
+  excelFileName     String //Excel fayl nomi
+  taxSystemError    String? //Soliq tizimiga yuborilgani haqida xatolik
+}
