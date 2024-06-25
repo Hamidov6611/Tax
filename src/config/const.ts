@@ -18,4 +18,4 @@ export const originalUrl = 'http://localhost:3000';
 
 export const MAX_FILE_SIZE = 1024 * 1024 * 25; // 5MB
 
-export const TAX_API_ENDPOINT = 'https://my.soliq.uz/xdduk-api/';
+export const TAX_API_ENDPOINT = process.env.TAX_API_ENDPOINT;
