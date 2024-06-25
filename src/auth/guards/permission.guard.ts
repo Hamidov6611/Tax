@@ -21,11 +21,11 @@ export class PermissionsGuard implements CanActivate {
             'permission',
             context.getHandler(),
         );
-
         if (!permission) return true;
 
         const request: Request = context.switchToHttp().getRequest();
         const user = request['user'];
+        console.log(user)
         if (user.isSuperAdmin) return true;
         return user.permissions.some((p) => p === permission);
     }

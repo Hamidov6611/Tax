@@ -6,6 +6,8 @@ import { UsersModule } from './users/users.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { PermissionsGuard } from './auth/guards/permission.guard';
+import { MeModule } from './me/me.module';
+import { ExcavationModule } from './excavation/excavation.module';
 
 @Module({
   imports: [
@@ -14,7 +16,9 @@ import { PermissionsGuard } from './auth/guards/permission.guard';
       dest: './uploads',
     }),
     AuthModule,
-    UsersModule
+    UsersModule,
+    MeModule,
+    ExcavationModule
   ],
   controllers: [],
   providers: [
