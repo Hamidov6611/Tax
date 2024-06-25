@@ -14,7 +14,7 @@ export const PaginationLimit = {
   max: 60,
 };
 
-export const originalUrl = 'http://localhost:3000';
+export const originalUrl = process.env.ORIGINAL_URL;
 
 export const MAX_FILE_SIZE = 1024 * 1024 * 25; // 5MB
 
