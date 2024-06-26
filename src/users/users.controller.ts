@@ -23,8 +23,8 @@ export class UsersController {
 
   @AllowedPermission(Permission.USER_WRITE)
   @Post()
-  async createOne(@Body() body: CreateUser) {
-    return this.usersService.createOne(body);
+  async createOne(@Body() body: CreateUser, @User() user: any) {
+    return this.usersService.createOne(body, user);
   }
 
   @AllowedPermission(Permission.USER_WRITE)

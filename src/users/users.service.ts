@@ -70,7 +70,13 @@ export class UsersService {
     return user;
   }
 
-  async createOne(body: CreateUser) {
+  async createOne(body: CreateUser, user: User) {
+    if (!user.isSuperAdmin) {
+      throw new BadRequestException(
+        'You cannot create new users',
+        ErrorCode.LIMITED_PERMISSION,
+      )
+    }
     return await this.prisma.user.create({
       data: {
         firstName: body.firstName,
